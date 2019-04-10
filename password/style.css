@@ -1,0 +1,28 @@
+.heart {
+    color: #e25555;
+}
+
+#container {
+    display: flex;
+}
+
+#left {
+    width: 300px;
+}
+
+#right {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#password-container {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+#password {
+    width: 200px;
+}
