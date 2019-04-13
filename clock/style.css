@@ -4,25 +4,31 @@
     padding: 10px;
 }
 
+.icon {
+    height: 40px;
+    margin-left: 23px;
+}
+
 .row {
     display: flex;
     flex-direction: row;
-    font-size: 18px;
+    font-size: 25px;
     margin-bottom: 5px;
+    height: 55px;
+    align-items: center;
 }
 
 .area {
-    width: 85px;
+    width: 125px;
     font-weight: bold;
 }
 
-.time {
-    font-family: "Courier New", Consolas, monospace;
+.time {    
 }
 
 #slider {
     margin-top: 10px;
-    max-width: 400px;
+    max-width: 350px;
 }
 
 .center {

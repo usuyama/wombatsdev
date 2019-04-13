@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <title>JST2PT</title>
+    <title>Wombats World Clock</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data.min.js"></script>
@@ -22,26 +22,44 @@
         <div class='row'>
             <div class='area'>Japan</div>
             <div class='time' id='jst'></div>
+            <img class='icon' id='jst-icon' src='womby_skate.png' />
         </div>
         <div class='row'>
             <div class='area'>Seattle</div>
             <div class='time' id='pt'></div>
+            <img class='icon' id='pt-icon' src='womby_skate.png' />
         </div>
         <div class='row'>
             <div class='area'>New York</div>
             <div class='time' id='ny'></div>
+            <img class='icon' id='ny-icon' src='womby_skate.png' />
         </div>
         <div id="slider"></div>
-        <div class='center'><img id='womby' src='womby_skate.png' /></div>
     </div>
 </body>
 <script>
-    var fmt = "MM-DD HH:mm A Z";
+    var fmt = "MM-DD HH:mm";
 
     var setTime = function (t) {
-        document.getElementById('jst').innerHTML = t.tz("Japan").format(fmt);
-        document.getElementById('pt').innerHTML = t.tz("America/Los_Angeles").format(fmt);
-        document.getElementById('ny').innerHTML = t.tz("America/New_York").format(fmt);
+        setTimeLocal(t, 'jst', 'jst-icon', 'Japan');
+        setTimeLocal(t, 'pt', 'pt-icon', 'America/Los_Angeles');
+        setTimeLocal(t, 'ny', 'ny-icon', 'America/New_York');
+    }
+
+    var setTimeLocal = function(t, timeId, iconId, tz) {
+        t = t.tz(tz);
+        document.getElementById(timeId).innerHTML = t.format(fmt);
+
+        var img = document.getElementById(iconId);
+
+        var h = t.hours();
+        if (h < 7) {
+            img.src = 'womby_sleep2.png';
+        } else if (h < 17) {
+            img.src = 'womby_skate.png';            
+        } else {
+            img.src = 'womby_bath.png';
+        }
     }
 
     window.onload = function () {
@@ -51,7 +69,7 @@
         $("#slider").slider({
             value: 0,
             min: 0,
-            max: 3000,
+            max: 2400,
             step: 30,
             slide: function (event, ui) {
                 var t = moment();
