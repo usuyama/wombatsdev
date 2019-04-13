@@ -46,7 +46,7 @@
         setTimeLocal(t, 'ny', 'ny-icon', 'America/New_York');
     }
 
-    var setTimeLocal = function(t, timeId, iconId, tz) {
+    var setTimeLocal = function (t, timeId, iconId, tz) {
         t = t.tz(tz);
         document.getElementById(timeId).innerHTML = t.format(fmt);
 
@@ -56,7 +56,7 @@
         if (h < 7) {
             img.src = 'womby_sleep2.png';
         } else if (h < 17) {
-            img.src = 'womby_skate.png';            
+            img.src = 'womby_skate.png';
         } else {
             img.src = 'womby_bath.png';
         }

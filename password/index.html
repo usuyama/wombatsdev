@@ -1,70 +1,64 @@
 <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <title>Wombat Password Generator</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <body>
-        <div id='container'>
-            <div id='left'>
-                <img src='womby.png' />
-            </div>
-            <div id='right'>
-                <div id='password-container'>
-                    Here's your password <span class="heart">&hearts;</span><br>
-                    <input type='text' id='password'/>
-                </div>
-            </div>
-        </div>
-    </body>
-    <script>
-    var Password = {
- 
- _pattern : /[a-zA-Z0-9_\-\+\.]/,
- 
- _getRandomByte : function()
- {
-   // http://caniuse.com/#feat=getrandomvalues
-   if(window.crypto && window.crypto.getRandomValues) 
-   {
-     var result = new Uint8Array(1);
-     window.crypto.getRandomValues(result);
-     return result[0];
-   }
-   else if(window.msCrypto && window.msCrypto.getRandomValues) 
-   {
-     var result = new Uint8Array(1);
-     window.msCrypto.getRandomValues(result);
-     return result[0];
-   }
-   else
-   {
-     return Math.floor(Math.random() * 256);
-   }
- },
- 
- generate : function(length)
- {
-   return Array.apply(null, {'length': length})
-     .map(function()
-     {
-       var result;
-       while(true) 
-       {
-         result = String.fromCharCode(this._getRandomByte());
-         if(this._pattern.test(result))
-         {
-           return result;
-         }
-       }        
-     }, this)
-     .join('');  
- }    
-   
-};
-window.onload = function () {
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>Wombat Password Generator</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<body>
+  <div id='container'>
+    <div id='left'>
+      <img src='womby.png' />
+    </div>
+    <div id='right'>
+      <div id='password-container'>
+        Here's your password <span class="heart">&hearts;</span><br>
+        <input type='text' id='password' />
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var Password = {
+
+    _pattern: /[a-zA-Z0-9_\-\+\.]/,
+
+    _getRandomByte: function () {
+      // http://caniuse.com/#feat=getrandomvalues
+      if (window.crypto && window.crypto.getRandomValues) {
+        var result = new Uint8Array(1);
+        window.crypto.getRandomValues(result);
+        return result[0];
+      }
+      else if (window.msCrypto && window.msCrypto.getRandomValues) {
+        var result = new Uint8Array(1);
+        window.msCrypto.getRandomValues(result);
+        return result[0];
+      }
+      else {
+        return Math.floor(Math.random() * 256);
+      }
+    },
+
+    generate: function (length) {
+      return Array.apply(null, { 'length': length })
+        .map(function () {
+          var result;
+          while (true) {
+            result = String.fromCharCode(this._getRandomByte());
+            if (this._pattern.test(result)) {
+              return result;
+            }
+          }
+        }, this)
+        .join('');
+    }
+
+  };
+  window.onload = function () {
     var box = document.getElementById("password")
     box.value = Password.generate(15);
     box.select();
-}
+  }
 </script>
+
 </html>
