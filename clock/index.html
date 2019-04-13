@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>JST2PT</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+</head>
+
+<body>
+    <div id='container'>
+        <div class='row'>
+            <div class='area'>Japan</div>
+            <div class='time' id='jst'></div>
+        </div>
+        <div class='row'>
+            <div class='area'>Seattle</div>
+            <div class='time' id='pt'></div>
+        </div>
+        <div class='row'>
+            <div class='area'>New York</div>
+            <div class='time' id='ny'></div>
+        </div>
+        <div id="slider"></div>
+        <div class='center'><img id='womby' src='womby_skate.png' /></div>
+    </div>
+</body>
+<script>
+    var fmt = "MM-DD HH:mm A Z";
+
+    var setTime = function (t) {
+        document.getElementById('jst').innerHTML = t.tz("Japan").format(fmt);
+        document.getElementById('pt').innerHTML = t.tz("America/Los_Angeles").format(fmt);
+        document.getElementById('ny').innerHTML = t.tz("America/New_York").format(fmt);
+    }
+
+    window.onload = function () {
+        var t = moment();
+        setTime(t);
+
+        $("#slider").slider({
+            value: 0,
+            min: 0,
+            max: 3000,
+            step: 30,
+            slide: function (event, ui) {
+                var t = moment();
+                var mod = 60 - (t.minutes() % 60);
+                t.add(mod + ui.value, 'minutes');
+                setTime(t);
+            }
+        });
+    }
+</script>
+
+</html>

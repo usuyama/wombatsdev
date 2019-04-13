@@ -1,0 +1,34 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.area {
+    width: 85px;
+    font-weight: bold;
+}
+
+.time {
+    font-family: "Courier New", Consolas, monospace;
+}
+
+#slider {
+    margin-top: 10px;
+    max-width: 400px;
+}
+
+.center {
+    justify-content: center;
+}
+
+#womby {
+    max-width: 100%;
+}
