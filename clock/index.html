@@ -53,7 +53,7 @@
         var img = document.getElementById(iconId);
 
         var h = t.hours();
-        if (h < 7) {
+        if (h < 7 || h >= 23) {
             img.src = 'womby_sleep2.png';
         } else if (h < 17) {
             img.src = 'womby_skate.png';
