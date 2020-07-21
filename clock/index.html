@@ -34,6 +34,11 @@
             <div class='time' id='ny'></div>
             <img class='icon' id='ny-icon' src='womby_skate.png' />
         </div>
+        <div class='row'>
+            <div class='area'>London</div>
+            <div class='time' id='london'></div>
+            <img class='icon' id='london-icon' src='womby_skate.png' />
+        </div>
         <div id="slider"></div>
     </div>
 </body>
@@ -44,6 +49,7 @@
         setTimeLocal(t, 'jst', 'jst-icon', 'Japan');
         setTimeLocal(t, 'pt', 'pt-icon', 'America/Los_Angeles');
         setTimeLocal(t, 'ny', 'ny-icon', 'America/New_York');
+        setTimeLocal(t, 'london', 'london-icon', 'Europe/London');
     }
 
     var setTimeLocal = function (t, timeId, iconId, tz) {
